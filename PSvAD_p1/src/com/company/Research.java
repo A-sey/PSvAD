@@ -78,7 +78,7 @@ public class Research {
         for (Double x : X) {
             sum += Math.pow((x - xx), 2);
         }
-        s = Math.pow(((1. / (N - 1)) * sum), 0.5);
+        s = Math.pow(((sum / (N - 1))), 0.5);
         return s;
     }
 
@@ -113,5 +113,9 @@ public class Research {
         double min = Collections.min(X);
         r = max-min;
         return r;
+    }
+
+    public List<Double> getList() {
+        return X;
     }
 }

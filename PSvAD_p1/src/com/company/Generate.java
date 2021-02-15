@@ -12,17 +12,20 @@ public class Generate {
     private final List<String> F1 = new ArrayList<>();
     private final List<String> F2 = new ArrayList<>();
     private final Random random;
+    private final Integer count;
 
-    public Generate() {
+    public Generate(int count) {
         random = new Random();
+        this.count = count;
     }
 
-    public Generate(int seed) {
+    public Generate(int count, int seed) {
         random = new Random(seed);
+        this.count = count;
     }
 
     public List<Double> genX(int min, int max) {
-        for (int i = 0; i < 40; i++) {
+        for (int i = 0; i < count; i++) {
             double x = random.nextDouble() * (max - min) + min;
             X.add(x);
         }
@@ -40,7 +43,7 @@ public class Generate {
     }
 
     public List<Double> genR(int min, int max) {
-        for (int i = 0; i < 40; i++) {
+        for (int i = 0; i < count; i++) {
             double r = random.nextInt(max + 1 - min) + min;
             R.add(r);
         }
@@ -67,10 +70,17 @@ public class Generate {
             int a = random.nextInt(9) + 2;
             l.add("'*" + a);
             return x * a;
-        } else {
+        } else if(mode == 2) {
             int a = random.nextInt(2) + 2;
             l.add("'^" + a);
             return Math.pow(x, a);
+        }/*else if(mode == 3){
+            int a = random.nextInt(15) + 1;
+            l.add("'-" + a);
+            return x + a;
+        }*/else {
+            l.add("'==");
+            return x;
         }
     }
 
