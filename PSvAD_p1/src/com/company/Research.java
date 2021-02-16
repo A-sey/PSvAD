@@ -29,14 +29,16 @@ public class Research {
     }
 
     public double getM() {
+        List<Double> sortedX = new ArrayList<>(X);
+        Collections.sort(sortedX);
         if (m != null) {
             return m;
         }
-        int N = X.size();
+        int N = sortedX.size();
         if (N % 2 == 1) {
-            m = X.get((N + 1) / 2);
+            m = sortedX.get((N - 1) / 2);
         } else {
-            m = (X.get(N / 2) + X.get(N / 2 + 1)) / 2;
+            m = (sortedX.get(N / 2 - 1) + sortedX.get(N / 2)) / 2;
         }
         return m;
     }
